@@ -49,13 +49,13 @@ def submit():
     
     # print(is_weekend)
 
-    distance = request.form.get('distance')
-    hour = request.form.get('hour')
-    is_weekend = request.form.get('is_weekend')
-    is_holiday = request.form.get('is_holiday')
-    road = request.form.get('road')
-    vehicle = request.form.get('vehicle')
-    avg_speed_kmh = request.form.get('avg_speed_kmph')
+    distance = float(request.form.get('distance'))
+    hour = int(request.form.get('hour'))
+    is_weekend = int(request.form.get('is_weekend'))
+    is_holiday = int(request.form.get('is_holiday'))
+    road = int(request.form.get('road'))
+    vehicle = int(request.form.get('vehicle'))
+    avg_speed_kmh = int(request.form.get('avg_speed_kmph'))
 
     # time = str(main(distance,hour,is_weekend,is_holiday,road,vehicle,avg_speed_kmh) + "Minutes")
     model = joblib.load('model.pkl')
