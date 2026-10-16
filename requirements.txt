@@ -9,6 +9,7 @@ joblib
 MarkupSafe
 numpy
 packaging
+pandas
 scikit-learn
 scipy
 threadpoolctl
