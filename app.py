@@ -68,7 +68,9 @@ def submit():
     
 
     except Exception as e:
-        return "error " + e;
+        print(e)
+        return str(e);
+        
         
     
 
