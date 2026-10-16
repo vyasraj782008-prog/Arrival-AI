@@ -69,7 +69,10 @@ def submit():
 
     except Exception as e:
         model = joblib.load('model.pkl')
-        return str(e + " " +  )    
+        time = model.predict([[distance,hour,is_weekend,is_holiday,road,vehicle,avg_speed_kmh]])
+        time = time[0]
+
+        return str(e + " " + time )    
         
     
 
