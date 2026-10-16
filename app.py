@@ -48,32 +48,27 @@ def submit():
     # is_weekend = request.form.get('is_weekend')    
     
     # print(is_weekend)
-    try:
-
-        distance = float(request.form.get('distance'))
-        hour = int(request.form.get('hour'))
-        is_weekend = int(request.form.get('is_weekend'))
-        is_holiday = int(request.form.get('is_holiday'))
-        road = int(request.form.get('road'))
-        vehicle = int(request.form.get('vehicle'))
-        avg_speed_kmh = int(request.form.get('avg_speed_kmph'))
     
-        # time = str(main(distance,hour,is_weekend,is_holiday,road,vehicle,avg_speed_kmh) + "Minutes")
-        model = joblib.load('model.pkl')
     
-        time = model.predict([[distance,hour,is_weekend,is_holiday,road,vehicle,avg_speed_kmh]])
-        time = time[0]
-
-        return render_template('index.html',time = time)
+    distance = float(request.form.get('distance'))
+    hour = int(request.form.get('hour'))
+    is_weekend = int(request.form.get('is_weekend'))
+    is_holiday = int(request.form.get('is_holiday'))
+    road = int(request.form.get('road'))
+    vehicle = int(request.form.get('vehicle'))
+    avg_speed_kmh = int(request.form.get('avg_speed_kmph'))
+    
+    # time = str(main(distance,hour,is_weekend,is_holiday,road,vehicle,avg_speed_kmh) + "Minutes")
+    model = joblib.load('model.pkl')
+    
+    time = model.predict([[distance,hour,is_weekend,is_holiday,road,vehicle,avg_speed_kmh]])
+    time = time[0]
+    
+    return render_template('index.html',time = time)
+    
+    
     
 
-    except Exception as e:
-        model = joblib.load('model.pkl')
-        time = model.predict([[distance,hour,is_weekend,is_holiday,road,vehicle,avg_speed_kmh]])
-        time = time[0]
-
-        return str(e + " " + time )    
-        
     
 
 
