@@ -146,7 +146,7 @@ def submit():
     
     # time = str(main(distance,hour,is_weekend,is_holiday,road,vehicle,avg_speed_kmh) + "Minutes")
     time = main(distance,hour,is_weekend,is_holiday,road,vehicle,avg_speed_kmh)
-
+    time = time[0]
     
     return render_template('index.html',time = time)
     
