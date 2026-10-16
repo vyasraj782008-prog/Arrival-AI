@@ -67,8 +67,8 @@ def submit():
         return render_template('index.html',time = time)
     
 
-    except Exception:
-        return "error"
+    except Exception as e:
+        return "error " + e;
         
     
 
