@@ -68,8 +68,9 @@ def submit():
     
 
     except Exception as e:
-        return str("error "+e);
-        
+    import os
+    return str(("Model file exists:", os.path.exists("model.pkl")) + ("Model size:", os.path.getsize("model.pkl"), "bytes"))
+    
         
     
 
