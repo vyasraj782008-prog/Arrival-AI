@@ -1,0 +1,643 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrival AI</title>
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.js">
+    <style>
+
+        @media (min-width:1200px){
+
+            *{
+                font-family: 'Times New Roman', Times, serif;
+            background-color: #F8FAFC;
+            color: #334155;
+            height: max-content;
+        }
+        header{
+            background-color: #0F172A;
+            color: black;
+            padding: 1rem;
+            
+        }
+        h2{
+            background-color: #0F172A;
+            margin: 1rem;
+            color: white;
+            display: inline-block;
+        }
+        .a{
+            background-color: #0F172A;
+            margin-left: 3rem;
+            margin-right: 3rem;
+            color: white;
+            
+        }
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            color:rgba(255, 255, 255, 0.629);
+        }
+        #links{
+            margin-left: 40%;
+            background-color: #0F172A;
+            
+            color: white;
+            display: inline-block;
+
+            transition: all;
+            transition-duration: 1s;
+            
+        }
+        #links:hover{
+            color: rgba(255, 255, 255, 0.731);
+            border: 1px solid white;
+            padding: 1rem;
+            border-radius: 25px;
+            transition: all;
+            transition-duration: 1s;
+        }
+        
+        
+        
+        #mainheading{
+            font-size: 70px;
+            font-weight: 800;
+            
+        }
+        #center{
+            
+            margin-top: 7rem;
+            margin-bottom: 7rem;
+        }
+
+        
+
+
+
+        #map{
+            height: 400px;
+            width: 800px;
+            
+        }
+        #mapspan{
+            border: 1px solid black;
+            padding: 3rem;
+            margin: 1rem;
+            display: inline-block;
+            border-radius: 30px;
+
+            
+            transition: all;
+            transition-duration: 1s;
+        }
+        #mapspan:hover{
+            border: 1px solid #0F172A;
+            border-radius: 90px;
+
+            transition: all;
+            transition-duration: 1s;
+        }
+
+
+        footer,h4,.p{
+            background-color: #233663;
+            margin: 1rem;
+            color: white;
+            padding: 0.2rem;
+        }
+
+        input,select,option{
+            height: 3rem;
+            width: 13rem;
+            margin: 0.3rem;
+
+            border: 1px solid gray;
+            border-radius: 25px;
+            padding: 0.4rem;
+        }
+        #location{
+            color:#233663;
+        }
+        
+    }
+
+
+
+
+
+
+
+
+
+
+        @media (max-width:1024px){
+            *{
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #F8FAFC;
+            color: #334155;
+            height: max-content;
+            max-width: 1024px;
+            align-items: center;
+        }
+        header{
+            background-color: #0F172A;
+            color: black;
+            padding: 1rem;
+            
+            
+        }
+        h2{
+            background-color: #0F172A;
+            margin: 1rem;
+            color: white;
+            display: block;
+            
+        }
+        .a{
+            background-color: #0F172A;
+            margin-left: 1rem;
+            margin-right: 1rem;
+            color: rgb(255, 255, 255);
+            display: inline;
+            
+        }
+        a{
+            text-decoration: none;
+        }
+        
+        #links{
+            
+            background-color: #0F172A;
+            padding: 0.3rem;
+            color: white;
+            display: inline;
+            align-items: center;
+            
+            
+        }
+       
+
+
+
+        #mainheading{
+            font-size: 70px;
+            font-weight: 800;
+            
+        }
+        #center{
+            
+            margin-top: 7rem;
+            margin-bottom: 7rem;
+        }
+
+        
+
+
+
+        #map{
+            height: 250px;
+            width: 450px;
+            
+        }
+        #mapspan{
+            border: 1px solid black;
+            padding: 1rem;
+            margin: 0.5rem;
+            display: inline-block;
+            border-radius: 30px;
+
+            
+            transition: all;
+            transition-duration: 1s;
+        }
+        #mapspan:hover{
+            border: 1px solid #0F172A;
+            border-radius: 90px;
+
+            transition: all;
+            transition-duration: 1s;
+        }
+
+        footer,h4,.p{
+            background-color: #233663;
+            
+            color: white;
+            
+
+        }
+
+        input,select,option{
+            height: 2.5rem;
+            width: 15rem;
+            margin: 0.3rem;
+
+            border: 1px solid gray;
+            border-radius: 25px;
+            padding: 0.4rem;
+        }
+
+        #location{
+            color:#233663;
+        }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        @media (max-width:768px){
+            *{
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #F8FAFC;
+            color: #334155;
+            height: max-content;
+            max-width: 768px;
+            align-items: center;
+        }
+        header{
+            background-color: #0F172A;
+            color: black;
+            padding: 1rem;
+            
+            
+        }
+        h2{
+            background-color: #0F172A;
+            margin: 1rem;
+            color: white;
+            display: block;
+            
+        }
+        .a{
+            background-color: #0F172A;
+            margin-left: 1rem;
+            margin-right: 1rem;
+            color: rgb(255, 255, 255);
+            display: inline;
+            
+        }
+        a{
+            text-decoration: none;
+        }
+        
+        #links{
+            
+            background-color: #0F172A;
+            padding: 0.3rem;
+            color: white;
+            display: inline;
+            align-items: center;
+            
+            
+        }
+       
+
+
+
+        #mainheading{
+            font-size: 70px;
+            font-weight: 800;
+            
+        }
+        #center{
+            
+            margin-top: 7rem;
+            margin-bottom: 7rem;
+        }
+
+        
+
+
+
+        #map{
+            height: 250px;
+            width: 450px;
+            
+        }
+        #mapspan{
+            border: 1px solid black;
+            padding: 1rem;
+            margin: 0.5rem;
+            display: inline-block;
+            border-radius: 30px;
+
+            
+            transition: all;
+            transition-duration: 1s;
+        }
+        #mapspan:hover{
+            border: 1px solid #0F172A;
+            border-radius: 90px;
+
+            transition: all;
+            transition-duration: 1s;
+        }
+
+        footer,h4,.p{
+            background-color: #233663;
+            
+            color: white;
+            
+        }
+
+        input,select,option{
+            height: 2.5rem;
+            width: 15rem;
+            margin: 0.3rem;
+
+            border: 1px solid gray;
+            border-radius: 25px;
+            padding: 0.4rem;
+        }
+
+        #location{
+            color:#233663;
+        }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        @media (max-width:480px){
+            *{
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #F8FAFC;
+            color: #334155;
+            height: max-content;
+            max-width: 480px;
+            align-items: center;
+        }
+        header{
+            background-color: #0F172A;
+            color: black;
+            /* padding: 1rem; */
+            
+            
+        }
+        h2{
+            background-color: #0F172A;
+            /* margin: 1rem; */
+            color: white;
+            display: block;
+            
+        }
+        .a{
+            background-color: #0F172A;
+            margin-left: 0.1rem;
+            margin-right: 0.1rem;
+            color: rgb(255, 255, 255);
+            display: block;
+            
+        }
+        a{
+            text-decoration: none;
+        }
+        
+        #links{
+            
+            background-color: #0F172A;
+            padding: 0.3rem;
+            color: white;
+            display: inline;
+            align-items: center;
+            
+            
+        }
+       
+
+
+
+        #mainheading{
+            font-size: 70px;
+            font-weight: 800;
+            
+        }
+        #center{
+            
+            margin-top: 7rem;
+            margin-bottom: 7rem;
+        }
+
+        
+
+
+
+        #map{
+            height: 100px;
+            width: 200px;
+            
+        }
+        #mapspan{
+            border: 1px solid black;
+            padding: 1rem;
+            margin: 0.5rem;
+            display: inline-block;
+            border-radius: 30px;
+
+            
+            transition: all;
+            transition-duration: 1s;
+        }
+        #mapspan:hover{
+            border: 1px solid #0F172A;
+            border-radius: 90px;
+
+            transition: all;
+            transition-duration: 1s;
+        }
+
+        footer,h4,.p{
+            background-color: #233663;
+            
+            color: white;
+            
+        }
+
+        input,select,option{
+            height: 2rem;
+            width: 10rem;
+            margin: 0.3rem;
+
+            border: 1px solid gray;
+            border-radius: 25px;
+            padding: 0.4rem;
+        }
+
+        #location{
+            color:#233663;
+        }
+        }
+
+    </style>
+</head>
+<body>
+    <center>
+
+        
+        <header id="arrival_ai">
+        <h2>Arrival AI</h2>
+        <div id="links">
+
+            <a href="#arrival_ai" class="a">Home</a>
+            <a href="#prediction" class="a">Predict Arrival Time</a>
+            <a href="#about" class="a">About</a>
+            
+        </div>
+    </header>
+
+    <center id="center">
+        <h1 id="mainheading">Arrival Time Predictions<br>Powered by Machine Learning</h1>
+        <p>Arrival AI use Machine Learning Model to predict estimated time to reach your destination.</p>
+        
+    </center>
+
+
+    <center id="prediction">
+    <h3 id="location">Select Starting Location on Map</h3>
+    
+    <p id="distance"></p>
+    
+    <p>Time :</p><p id="time">{{time}}</p>
+    <!-- X = df[['distance_km','hour','is_weekend','is_holiday','road','vehicle','avg_speed_kmph']] -->
+    
+    
+    <form action="/submit" method="post" >
+        <input type="text" id="distance2" name="distance" placeholder="Distance in KM"><br>
+        <input type="number" placeholder="Enter Current Hour" name="hour"><br>
+        Is weekend
+        <select name="is_weekend" id="">
+            <option value="0">no</option>
+            <option value="1">yes</option>
+        </select><br>
+
+        Is Holiday 
+        <select name="is_holiday" id="">
+            <option value="0">no</option>
+            <option value="1">yes</option>
+        </select><br>
+
+        Road type
+        <select name="road" id="">
+            <option value="0">Urban</option>
+            <option value="1">Highway</option>
+        </select><br>
+
+        Vehicle type
+        <select name="vehicle" id="">
+            <option value="0">Bike</option>
+            <option value="1">Car</option>
+        </select><br>
+
+        <input type="number" placeholder="Average speed in KMH" name="avg_speed_kmph"><br>
+        <input type="submit" >
+    </form>
+    
+    <span id="mapspan">
+        <div id="map"></div>
+    </span>
+
+
+    </center>
+    
+
+    
+    <footer id="about">
+        <h4>Arrival AI</h4><p class="p">It is a WebPage in which we can know approximated time required to reach our targated destination.</p>
+
+        <h4>Contect Details:- </h4>
+        <p class="p">Phone number:- 7698854201</p>
+        <p class="p">Email:- vyasraj782008@gmail.com</p>
+        
+        <p class="p">Made By Vyas Raj</p>
+
+
+    </footer>
+    
+
+
+</center>
+
+
+    <script src="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.js"></script>
+
+    <script>
+        const map = new maplibregl.Map({
+            container: "map",
+
+            style: "https://tiles.openfreemap.org/styles/liberty",
+
+            center: [70.80, 22.2900],
+
+            zoom: 12
+        });
+
+        let start = null;
+        let destionation = null
+        
+        map.on('click',async (event)=>{
+            
+            const location = {
+                lng: event.lngLat.lng,
+                lat: event.lngLat.lat 
+            }
+            if(!start){
+                start = location;
+                document.getElementById('location').innerText = "Select Destination Location";
+
+            }
+            else if(!destionation){
+                destionation = location;
+                document.getElementById('location').innerText = "Location Selected";
+            }
+
+            calculation(start,destionation);
+        });
+
+        async function calculation(start,destination){
+
+            const url = `https://router.project-osrm.org/route/v1/driving/` +
+                `${start.lng},${start.lat};` +
+                `${destination.lng},${destination.lat}` +
+                `?overview=full&geometries=geojson`;
+
+            const response = await fetch(url);
+            const data = await response.json();
+
+            const route = await data.routes[0];
+            const distance = await route.distance / 1000;
+
+            document.getElementById('distance').innerText = distance+" KM";
+            document.getElementById('distance2').value =distance;
+        }
+    </script>
+</body>
+</html>
