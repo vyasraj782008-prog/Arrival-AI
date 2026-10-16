@@ -68,9 +68,8 @@ def submit():
     
 
     except Exception as e:
-        import os
-        return str(("Model file exists:", os.path.exists("model.pkl")) + ("Model size:", os.path.getsize("model.pkl"), "bytes"))
-    
+        model = joblib.load('model.pkl')
+        return str(e + " " +  )    
         
     
 
