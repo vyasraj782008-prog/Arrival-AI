@@ -437,7 +437,7 @@
 
 
         #mainheading{
-            font-size: 70px;
+            font-size: 40px;
             font-weight: 800;
             
         }
@@ -452,13 +452,21 @@
 
 
         #map{
-            height: 100px;
-            width: 200px;
+            height: 200px;
+            width: 320px;
+            transition: all;
+            transition-duration: 1.5s;
+        }
+        #map:hover{
             
+            height:500px;
+            width: 320px;
+            transition: all;
+            transition-duration: 1.5s;
         }
         #mapspan{
             border: 1px solid black;
-            padding: 1rem;
+            /* padding: 0.5rem; */
             margin: 0.5rem;
             display: inline-block;
             border-radius: 30px;
@@ -467,13 +475,7 @@
             transition: all;
             transition-duration: 1s;
         }
-        #mapspan:hover{
-            border: 1px solid #0F172A;
-            border-radius: 90px;
-
-            transition: all;
-            transition-duration: 1s;
-        }
+        
 
         footer,h4,.p{
             background-color: #233663;
